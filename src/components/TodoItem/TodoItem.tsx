@@ -22,7 +22,10 @@ export default function TodoItem({ todo, update }: ITodoItemProps) {
   };
 
   return (
-    <div className="my-3 ms-3" onClick={handleContainerClick}>
+    <div
+      className="todo-item__container py-3 ps-3"
+      onClick={handleContainerClick}
+    >
       <FormCheck
         checked={todo.isDone}
         type="checkbox"

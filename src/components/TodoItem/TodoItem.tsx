@@ -15,8 +15,9 @@ export default function TodoItem({ todo, update }: ITodoItemProps) {
     const targetIsItem = (e.target as HTMLElement).classList.contains(
       ITEM_CLASS
     );
+    const targetIsContainer = e.target === e.currentTarget;
 
-    if (targetIsItem) {
+    if (targetIsItem || targetIsContainer) {
       update(todo.id);
     }
   };

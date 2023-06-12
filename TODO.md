@@ -4,4 +4,5 @@
 - [ ] add tests
 - [ ] make design responsive
 - [ ] add animations
+- [ ] add font
 - [ ] add favicon

@@ -1,15 +1,15 @@
 import Container from "react-bootstrap/Container";
 import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
-import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import { FormEvent, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import assert from "../../lib/assert";
 import { ITodo } from "../../types";
 import TodoItem from "../TodoItem/TodoItem";
 import "./App.css";
+import TodoForm from "../TodoForm/TodoForm";
 
 interface IFilter {
   name: string;
@@ -59,25 +59,16 @@ const INITIAL_TODOS: ITodo[] = [
 ];
 
 export default function App() {
-  const [todoInput, setTodoInput] = useState("");
   const [activeFilter, setActiveFilter] = useState(FILTERS[0].name);
   const [todos, setTodos] = useState<ITodo[]>(INITIAL_TODOS);
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
-    e.preventDefault();
-
-    const trimmedTodoInput = todoInput.trim();
-    if (!trimmedTodoInput) {
-      return;
-    }
-
+  const handleSubmit = (input: string): void => {
     const newTodo: ITodo = {
       id: uuidv4(),
       isDone: false,
-      text: trimmedTodoInput,
+      text: input,
     };
     setTodos((prev) => [...prev, newTodo]);
-    setTodoInput("");
   };
 
   const updateTodo = (id: string): void => {
@@ -116,17 +107,7 @@ export default function App() {
       <Container className="todos-container">
         <Card className="">
           <div className="border-bottom border-bottom-1">
-            <Form onSubmit={handleSubmit} className="d-flex align-items-center">
-              <Form.Group controlId="todoTextInput" className="flex-grow-1">
-                <Form.Control
-                  type="text"
-                  placeholder="What needs to be done?"
-                  value={todoInput}
-                  onChange={(e) => setTodoInput(e.target.value)}
-                  className="border-0 py-3 ps-3"
-                />
-              </Form.Group>
-            </Form>
+            <TodoForm onSubmit={handleSubmit} />
           </div>
           <>
             <div className="todo-list overflow-x-hidden overflow-y-auto border-bottom">

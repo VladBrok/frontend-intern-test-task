@@ -5,7 +5,7 @@
 - [x] highlight hovered item
 - [x] handle case when 0 todos (or 0 completed, or 0 active)
 - [x] add font
+- [x] add favicon
 - [ ] make design responsive
 - [ ] add tests
 - [ ] add animations
-- [ ] add favicon

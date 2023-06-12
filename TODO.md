@@ -1,7 +1,8 @@
 - [x] implement logic
 - [x] split the code into multiple files and components
 - [x] use BEM, isolate styles
-- [ ] scroll to bottom after adding a new todo
+- [x] scroll to bottom after adding a new todo
+- [ ] highlight hovered item
 - [ ] handle case when 0 todos (or 0 completed, or 0 active)
 - [ ] make design responsive
 - [ ] add tests

@@ -1,3 +1,4 @@
+import { MouseEventHandler } from "react";
 import { ITodo } from "../../shared-types";
 import FormCheck from "react-bootstrap/FormCheck";
 import "./TodoItem.css";
@@ -7,15 +8,29 @@ export interface ITodoItemProps {
   update: (id: string) => void;
 }
 
+const ITEM_CLASS = "todo-item";
+
 export default function TodoItem({ todo, update }: ITodoItemProps) {
+  const handleContainerClick: MouseEventHandler<HTMLDivElement> = (e) => {
+    const targetIsItem = (e.target as HTMLElement).classList.contains(
+      ITEM_CLASS
+    );
+
+    if (targetIsItem) {
+      update(todo.id);
+    }
+  };
+
   return (
-    <FormCheck
-      checked={todo.isDone}
-      type="checkbox"
-      id={todo.id}
-      label={todo.text}
-      onChange={() => update(todo.id)}
-      className={`${todo.isDone ? "todo-item_done" : ""} todo-item my-3 ms-3`}
-    />
+    <div className="my-3 ms-3" onClick={handleContainerClick}>
+      <FormCheck
+        checked={todo.isDone}
+        type="checkbox"
+        id={todo.id}
+        label={todo.text}
+        onChange={() => update(todo.id)}
+        className={`${todo.isDone ? "todo-item_done" : ""} ${ITEM_CLASS}`}
+      />
+    </div>
   );
 }

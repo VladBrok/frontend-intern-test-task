@@ -9,3 +9,4 @@
 - [ ] make design responsive
 - [ ] add tests
 - [ ] add animations
+- [ ] publish on vercel

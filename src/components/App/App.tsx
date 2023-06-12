@@ -1,6 +1,4 @@
 import Container from "react-bootstrap/Container";
-import Tabs from "react-bootstrap/Tabs";
-import Tab from "react-bootstrap/Tab";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { useState } from "react";
@@ -11,6 +9,7 @@ import TodoItem from "../TodoItem/TodoItem";
 import "./App.css";
 import TodoForm from "../TodoForm/TodoForm";
 import useFilter, { FILTERS } from "../../hooks/useFilter";
+import FilterTabs from "../FilterTabs/FilterTabs";
 
 const INITIAL_TODOS: ITodo[] = [
   {
@@ -68,6 +67,7 @@ export default function App() {
   const completedItemCount = todos.filter((todo) => todo.isDone).length;
   const leftItemsCount = todos.filter((todo) => !todo.isDone).length;
   const itemsPluralized = leftItemsCount === 1 ? "item" : "items";
+  const filterNames = FILTERS.map((filter) => filter.name);
 
   return (
     <Container>
@@ -87,19 +87,11 @@ export default function App() {
               <p className="mb-0 ps-3">
                 {leftItemsCount} {itemsPluralized} left
               </p>
-              <Tabs
-                activeKey={activeFilter}
-                onSelect={(filter) => setActiveFilter(filter!)}
-                className="border-bottom-0"
-              >
-                {FILTERS.map((filter) => (
-                  <Tab
-                    key={filter.name}
-                    eventKey={filter.name}
-                    title={filter.name}
-                  ></Tab>
-                ))}
-              </Tabs>
+              <FilterTabs
+                active={activeFilter}
+                setActive={setActiveFilter}
+                names={filterNames}
+              />
               <Button
                 variant="link"
                 onClick={clearCompleted}

@@ -1,6 +1,6 @@
 - [x] implement logic
-- [ ] split the code into multiple files and components
-- [ ] use BEM
+- [x] split the code into multiple files and components
+- [ ] use BEM, isolate styles
 - [ ] handle case when 0 todos (or 0 completed, or 0 active)
 - [ ] add tests
 - [ ] make design responsive

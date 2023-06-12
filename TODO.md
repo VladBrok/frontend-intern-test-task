@@ -1,0 +1,4 @@
+- [ ] add notifications
+- [ ] handle case when 0 todos
+- [ ] add tests
+- [ ] split the code into multiple files and components

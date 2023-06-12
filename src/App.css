@@ -1,0 +1,32 @@
+.todos-container {
+  max-width: 600px !important;
+}
+
+.btn-link {
+  text-decoration: none !important;
+}
+
+.todo_done > .form-check-label {
+  text-decoration: line-through;
+  color: var(--bs-secondary);
+}
+
+.tab-content {
+  display: none;
+}
+
+::-webkit-input-placeholder {
+  font-style: italic;
+}
+
+:-moz-placeholder {
+  font-style: italic;
+}
+
+::-moz-placeholder {
+  font-style: italic;
+}
+
+:-ms-input-placeholder {
+  font-style: italic;
+}

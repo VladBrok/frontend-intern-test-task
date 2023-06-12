@@ -105,7 +105,7 @@ export default function App() {
     <Container>
       <h1 className="text-center my-4">todos</h1>
       <Container className="todos-container">
-        <Card className="">
+        <Card>
           <div className="border-bottom border-bottom-1">
             <TodoForm onSubmit={handleSubmit} />
           </div>

@@ -15,7 +15,7 @@ export default function TodoItem({ todo, update }: ITodoItemProps) {
       id={todo.id}
       label={todo.text}
       onChange={() => update(todo.id)}
-      className={`${todo.isDone ? "todo_done" : ""} my-3 ms-3 todo-item`}
+      className={`${todo.isDone ? "todo_done" : ""} todo-item my-3 ms-3`}
     />
   );
 }

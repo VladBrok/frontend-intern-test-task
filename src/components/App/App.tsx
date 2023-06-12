@@ -4,16 +4,12 @@ import Tab from "react-bootstrap/Tab";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import "./App.css";
 import { FormEvent, useMemo, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import assert from "./lib/assert";
-
-interface ITodo {
-  id: string;
-  text: string;
-  isDone: boolean;
-}
+import assert from "../../lib/assert";
+import { ITodo } from "../../types";
+import TodoItem from "../TodoItem/TodoItem";
+import "./App.css";
 
 interface IFilter {
   name: string;
@@ -67,7 +63,7 @@ export default function App() {
   const [activeFilter, setActiveFilter] = useState(FILTERS[0].name);
   const [todos, setTodos] = useState<ITodo[]>(INITIAL_TODOS);
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
 
     const trimmedTodoInput = todoInput.trim();
@@ -84,7 +80,7 @@ export default function App() {
     setTodoInput("");
   };
 
-  const updateTodo = (id: string) => {
+  const updateTodo = (id: string): void => {
     setTodos((prev) => {
       assert(
         prev.find((todo) => todo.id === id),
@@ -100,7 +96,7 @@ export default function App() {
     });
   };
 
-  const clearCompleted = () => {
+  const clearCompleted = (): void => {
     setTodos((prev) => prev.filter((todo) => !todo.isDone));
   };
 
@@ -135,17 +131,7 @@ export default function App() {
           <>
             <div className="todo-list overflow-x-hidden overflow-y-auto border-bottom">
               {filteredTodos.map((todo) => (
-                <Form.Check
-                  key={todo.id}
-                  checked={todo.isDone}
-                  type="checkbox"
-                  id={todo.id}
-                  label={todo.text}
-                  onChange={() => updateTodo(todo.id)}
-                  className={`${
-                    todo.isDone ? "todo_done" : ""
-                  } my-3 ms-3 todo-item`}
-                />
+                <TodoItem key={todo.id} todo={todo} update={updateTodo} />
               ))}
             </div>
             <div className="d-flex justify-content-between align-items-center">

@@ -3,42 +3,14 @@ import Tabs from "react-bootstrap/Tabs";
 import Tab from "react-bootstrap/Tab";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import assert from "../../lib/assert";
-import { ITodo } from "../../types";
+import { ITodo } from "../../shared-types";
 import TodoItem from "../TodoItem/TodoItem";
 import "./App.css";
 import TodoForm from "../TodoForm/TodoForm";
-
-interface IFilter {
-  name: string;
-  apply: (todos: ITodo[]) => ITodo[];
-}
-
-const FILTERS: IFilter[] = [
-  {
-    name: "All",
-    apply: (todos) => todos,
-  },
-  {
-    name: "Active",
-    apply: (todos) => todos.filter((todo) => !todo.isDone),
-  },
-  {
-    name: "Completed",
-    apply: (todos) => todos.filter((todo) => todo.isDone),
-  },
-];
-
-assert(
-  FILTERS.length > 0,
-  `Filters length ${FILTERS.length} is less than or equal to zero.`
-);
-assert(
-  new Set(FILTERS.map((x) => x.name)).size === FILTERS.length,
-  "Filter names should be distinct."
-);
+import useFilter, { FILTERS } from "../../hooks/useFilter";
 
 const INITIAL_TODOS: ITodo[] = [
   {
@@ -91,11 +63,7 @@ export default function App() {
     setTodos((prev) => prev.filter((todo) => !todo.isDone));
   };
 
-  const filteredTodos = useMemo(() => {
-    const filter = FILTERS.find((x) => x.name === activeFilter);
-    assert(filter, `Active filter ${activeFilter} not found.`);
-    return filter.apply(todos);
-  }, [activeFilter, todos]);
+  const filteredTodos = useFilter(todos, activeFilter);
 
   const completedItemCount = todos.filter((todo) => todo.isDone).length;
   const leftItemsCount = todos.filter((todo) => !todo.isDone).length;
@@ -121,7 +89,7 @@ export default function App() {
               </p>
               <Tabs
                 activeKey={activeFilter}
-                onSelect={(k) => setActiveFilter(k!)}
+                onSelect={(filter) => setActiveFilter(filter!)}
                 className="border-bottom-0"
               >
                 {FILTERS.map((filter) => (

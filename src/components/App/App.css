@@ -5,3 +5,7 @@
 .app .btn-link {
   text-decoration: none !important;
 }
+
+app__footer-item {
+  flex-basis: 33%;
+}

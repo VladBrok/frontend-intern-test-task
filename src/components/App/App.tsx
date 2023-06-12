@@ -74,7 +74,7 @@ export default function App() {
 
   return (
     <Container className="app">
-      <h1 className="text-center my-4">todos</h1>
+      <h1 className="text-center my-4 fw-normal">todos</h1>
       <Container className="app__todos-container">
         <Card>
           <div className="border-bottom border-bottom-1">
@@ -87,18 +87,21 @@ export default function App() {
               noItemsText={activeFilter?.noItemsText || ""}
             />
             <div className="d-flex justify-content-between align-items-center">
-              <p className="mb-0 ps-3">
+              <p className="app__footer-item mb-0 px-3">
                 {leftItemsCount} {itemsPluralized} left
               </p>
-              <FilterTabs
-                active={activeFilterName}
-                setActive={setActiveFilterName}
-                names={filterNames}
-              />
+              <div className="app__footer-item">
+                <FilterTabs
+                  active={activeFilterName}
+                  setActive={setActiveFilterName}
+                  names={filterNames}
+                />
+              </div>
               <Button
                 variant="link"
                 onClick={clearCompleted}
                 disabled={completedItemCount === 0}
+                className="app__footer-item"
               >
                 Clear completed
               </Button>

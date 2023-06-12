@@ -3,8 +3,8 @@
 - [x] use BEM, isolate styles
 - [ ] scroll to bottom after adding a new todo
 - [ ] handle case when 0 todos (or 0 completed, or 0 active)
-- [ ] add tests
 - [ ] make design responsive
+- [ ] add tests
 - [ ] add animations
 - [ ] add font
 - [ ] add favicon

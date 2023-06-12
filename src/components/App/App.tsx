@@ -5,11 +5,11 @@ import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import assert from "../../lib/assert";
 import { ITodo } from "../../shared-types";
-import TodoItem from "../TodoItem/TodoItem";
 import "./App.css";
 import TodoForm from "../TodoForm/TodoForm";
 import useFilter, { FILTERS } from "../../hooks/useFilter";
 import FilterTabs from "../FilterTabs/FilterTabs";
+import TodoList from "../TodoList/TodoList";
 
 const INITIAL_TODOS: ITodo[] = [
   {
@@ -78,11 +78,7 @@ export default function App() {
             <TodoForm onSubmit={handleSubmit} />
           </div>
           <>
-            <div className="app__todo-list overflow-x-hidden overflow-y-auto border-bottom">
-              {filteredTodos.map((todo) => (
-                <TodoItem key={todo.id} todo={todo} update={updateTodo} />
-              ))}
-            </div>
+            <TodoList todos={filteredTodos} update={updateTodo} />
             <div className="d-flex justify-content-between align-items-center">
               <p className="mb-0 ps-3">
                 {leftItemsCount} {itemsPluralized} left

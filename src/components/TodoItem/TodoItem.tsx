@@ -1,4 +1,4 @@
-import { ITodo } from "../../types";
+import { ITodo } from "../../shared-types";
 import FormCheck from "react-bootstrap/FormCheck";
 import "./TodoItem.css";
 

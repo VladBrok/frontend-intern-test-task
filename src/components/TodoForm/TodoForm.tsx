@@ -1,5 +1,6 @@
 import { FormEvent, useState } from "react";
 import Form from "react-bootstrap/Form";
+import "./TodoForm.css";
 
 export interface ITodoFormProps {
   onSubmit: (input: string) => void;
@@ -28,7 +29,7 @@ export default function TodoForm({ onSubmit }: ITodoFormProps) {
           placeholder="What needs to be done?"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          className="border-0 py-3 ps-3"
+          className="input-field border-0 py-3 ps-3"
         />
       </Form.Group>
     </Form>

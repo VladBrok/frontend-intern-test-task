@@ -1,3 +1,7 @@
 .todo-list {
   max-height: 70vh;
 }
+
+.todo-list__inner-container {
+  overflow: hidden;
+}

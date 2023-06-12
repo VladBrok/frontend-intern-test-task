@@ -85,6 +85,7 @@ export default function App() {
               todos={filteredTodos}
               update={updateTodo}
               noItemsText={activeFilter?.noItemsText || ""}
+              activeFilter={activeFilterName}
             />
             <div className="d-flex justify-content-between align-items-center">
               <p className="app__footer-item mb-0 px-3">

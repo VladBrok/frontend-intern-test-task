@@ -17,7 +17,7 @@ export default function FilterTabs({
     <Tabs
       activeKey={active}
       onSelect={(name) => setActive(name!)}
-      className="border-bottom-0"
+      className="filter-tabs border-bottom-0"
     >
       {names.map((name) => (
         <Tab key={name} eventKey={name} title={name}></Tab>

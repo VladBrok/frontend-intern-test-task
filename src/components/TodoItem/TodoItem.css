@@ -1,4 +1,4 @@
-.todo_done > .form-check-label {
+.todo-item_done > .form-check-label {
   text-decoration: line-through;
   color: var(--bs-secondary);
 }

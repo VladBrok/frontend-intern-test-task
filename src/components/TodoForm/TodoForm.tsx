@@ -29,7 +29,7 @@ export default function TodoForm({ onSubmit }: ITodoFormProps) {
           placeholder="What needs to be done?"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          className="input-field border-0 py-3 ps-3"
+          className="todo-form__input-field border-0 py-3 ps-3"
         />
       </Form.Group>
     </Form>

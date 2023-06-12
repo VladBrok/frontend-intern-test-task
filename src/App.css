@@ -2,6 +2,18 @@
   max-width: 600px !important;
 }
 
+.todo-list {
+  max-height: 70vh;
+}
+
+.todo-item:hover {
+  cursor: pointer;
+}
+
+.todo-item:hover > * {
+  cursor: pointer;
+}
+
 .btn-link {
   text-decoration: none !important;
 }

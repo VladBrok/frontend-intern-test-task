@@ -1,4 +1,6 @@
-- [ ] add notifications
-- [ ] handle case when 0 todos
-- [ ] add tests
 - [ ] split the code into multiple files and components
+- [ ] add notifications
+- [ ] handle case when 0 todos (or 0 completed, or 0 active)
+- [ ] add tests
+- [ ] make design responsive
+- [ ] add animations

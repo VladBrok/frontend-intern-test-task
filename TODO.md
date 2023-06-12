@@ -6,7 +6,7 @@
 - [x] handle case when 0 todos (or 0 completed, or 0 active)
 - [x] add font
 - [x] add favicon
+- [x] add animations
 - [ ] make design responsive
 - [ ] add tests
-- [ ] add animations
 - [ ] publish on vercel

@@ -18,6 +18,7 @@ export default function FilterTabs({
       activeKey={active}
       onSelect={(name) => setActive(name!)}
       className="filter-tabs border-bottom-0"
+      variant="pills"
     >
       {names.map((name) => (
         <Tab key={name} eventKey={name} title={name}></Tab>

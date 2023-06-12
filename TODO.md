@@ -7,6 +7,6 @@
 - [x] add font
 - [x] add favicon
 - [x] add animations
-- [ ] make design responsive
+- [x] make design responsive
 - [ ] add tests
 - [ ] publish on vercel

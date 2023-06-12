@@ -87,7 +87,7 @@ export default function App() {
               noItemsText={activeFilter?.noItemsText || ""}
               activeFilter={activeFilterName}
             />
-            <div className="d-flex justify-content-between align-items-center">
+            <div className="my-3 d-flex flex-column flex-md-row gap-2 justify-content-between align-items-center">
               <p className="app__footer-item mb-0 px-3">
                 {leftItemsCount} {itemsPluralized} left
               </p>

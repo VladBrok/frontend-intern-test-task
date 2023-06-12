@@ -4,8 +4,8 @@
 - [x] scroll to bottom after adding a new todo
 - [x] highlight hovered item
 - [x] handle case when 0 todos (or 0 completed, or 0 active)
+- [x] add font
 - [ ] make design responsive
 - [ ] add tests
 - [ ] add animations
-- [ ] add font
 - [ ] add favicon

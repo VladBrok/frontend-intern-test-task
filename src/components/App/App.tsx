@@ -70,15 +70,15 @@ export default function App() {
   const filterNames = FILTERS.map((filter) => filter.name);
 
   return (
-    <Container>
+    <Container className="app">
       <h1 className="text-center my-4">todos</h1>
-      <Container className="todos-container">
+      <Container className="app__todos-container">
         <Card>
           <div className="border-bottom border-bottom-1">
             <TodoForm onSubmit={handleSubmit} />
           </div>
           <>
-            <div className="todo-list overflow-x-hidden overflow-y-auto border-bottom">
+            <div className="app__todo-list overflow-x-hidden overflow-y-auto border-bottom">
               {filteredTodos.map((todo) => (
                 <TodoItem key={todo.id} todo={todo} update={updateTodo} />
               ))}

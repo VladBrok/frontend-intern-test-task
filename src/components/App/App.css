@@ -1,11 +1,11 @@
-.todos-container {
+.app__todos-container {
   max-width: 600px !important;
 }
 
-.todo-list {
+.app__todo-list {
   max-height: 70vh;
 }
 
-.btn-link {
+.app .btn-link {
   text-decoration: none !important;
 }

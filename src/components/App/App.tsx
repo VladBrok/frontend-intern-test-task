@@ -30,7 +30,7 @@ const INITIAL_TODOS: ITodo[] = [
 ];
 
 export default function App() {
-  const [activeFilter, setActiveFilter] = useState(FILTERS[0].name);
+  const [activeFilterName, setActiveFilterName] = useState(FILTERS[0].name);
   const [todos, setTodos] = useState<ITodo[]>(INITIAL_TODOS);
 
   const handleSubmit = (input: string): void => {
@@ -62,12 +62,15 @@ export default function App() {
     setTodos((prev) => prev.filter((todo) => !todo.isDone));
   };
 
-  const filteredTodos = useFilter(todos, activeFilter);
+  const filteredTodos = useFilter(todos, activeFilterName);
 
   const completedItemCount = todos.filter((todo) => todo.isDone).length;
   const leftItemsCount = todos.filter((todo) => !todo.isDone).length;
   const itemsPluralized = leftItemsCount === 1 ? "item" : "items";
   const filterNames = FILTERS.map((filter) => filter.name);
+  const activeFilter = FILTERS.find(
+    (filter) => filter.name === activeFilterName
+  );
 
   return (
     <Container className="app">
@@ -78,14 +81,18 @@ export default function App() {
             <TodoForm onSubmit={handleSubmit} />
           </div>
           <>
-            <TodoList todos={filteredTodos} update={updateTodo} />
+            <TodoList
+              todos={filteredTodos}
+              update={updateTodo}
+              noItemsText={activeFilter?.noItemsText || ""}
+            />
             <div className="d-flex justify-content-between align-items-center">
               <p className="mb-0 ps-3">
                 {leftItemsCount} {itemsPluralized} left
               </p>
               <FilterTabs
-                active={activeFilter}
-                setActive={setActiveFilter}
+                active={activeFilterName}
+                setActive={setActiveFilterName}
                 names={filterNames}
               />
               <Button

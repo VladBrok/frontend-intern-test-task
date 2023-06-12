@@ -3,7 +3,7 @@
 - [x] use BEM, isolate styles
 - [x] scroll to bottom after adding a new todo
 - [x] highlight hovered item
-- [ ] handle case when 0 todos (or 0 completed, or 0 active)
+- [x] handle case when 0 todos (or 0 completed, or 0 active)
 - [ ] make design responsive
 - [ ] add tests
 - [ ] add animations

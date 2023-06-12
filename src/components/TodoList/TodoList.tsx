@@ -8,9 +8,14 @@ import assert from "../../lib/assert";
 export interface ITodoListProps {
   todos: ITodo[];
   update: (id: string) => void;
+  noItemsText: string;
 }
 
-export default function TodoList({ todos, update }: ITodoListProps) {
+export default function TodoList({
+  todos,
+  update,
+  noItemsText,
+}: ITodoListProps) {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const prevLength = usePrevious(todos.length);
 
@@ -30,9 +35,13 @@ export default function TodoList({ todos, update }: ITodoListProps) {
       className="todo-list overflow-x-hidden overflow-y-auto border-bottom"
       ref={containerRef}
     >
-      {todos.map((todo) => (
-        <TodoItem key={todo.id} todo={todo} update={update} />
-      ))}
+      {todos.length !== 0 ? (
+        todos.map((todo) => (
+          <TodoItem key={todo.id} todo={todo} update={update} />
+        ))
+      ) : (
+        <p className="m-3 text-secondary">{noItemsText}</p>
+      )}
     </div>
   );
 }

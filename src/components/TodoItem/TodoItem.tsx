@@ -2,6 +2,7 @@ import { MouseEventHandler } from "react";
 import { ITodo } from "../../shared-types";
 import FormCheck from "react-bootstrap/FormCheck";
 import "./TodoItem.css";
+import { TEST_IDS } from "../../lib/tests/testIds";
 
 export interface ITodoItemProps {
   todo: ITodo;
@@ -26,7 +27,7 @@ export default function TodoItem({ todo, update }: ITodoItemProps) {
     <div
       className="todo-item__container py-3 ps-3"
       onClick={handleContainerClick}
-      data-testid="todo-item"
+      data-testid={TEST_IDS.TODO_ITEM}
     >
       <FormCheck
         id={todo.id}
@@ -36,9 +37,9 @@ export default function TodoItem({ todo, update }: ITodoItemProps) {
           type="checkbox"
           onChange={() => update(todo.id)}
           checked={todo.isDone}
-          data-testid="todo-item-checkbox"
+          data-testid={TEST_IDS.TODO_ITEM_CHECKBOX}
         />
-        <FormCheck.Label data-testid="todo-item-label">
+        <FormCheck.Label data-testid={TEST_IDS.TODO_ITEM_LABEL}>
           {todo.text}
         </FormCheck.Label>
       </FormCheck>

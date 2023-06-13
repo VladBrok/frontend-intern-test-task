@@ -1,68 +1,55 @@
 import { render } from "@testing-library/react";
 import App from "./App";
 import user from "@testing-library/user-event";
-import { TEST_IDS } from "../../lib/tests/testIds";
+import { addTodo } from "../../lib/tests/addTodo";
+import { getTodos } from "../../lib/tests/getTodos";
+import { getTodoCheckboxes } from "../../lib/tests/getTodoCheckboxes";
+import { getTodoLabels } from "../../lib/tests/getTodoLabels";
 
 describe("App", () => {
   it("adds a todo item with specified text", async () => {
     const app = render(<App />);
-    const prevTodos = await app.findAllByTestId(TEST_IDS.TODO_ITEM);
-    const input = await app.findByPlaceholderText("What needs to be done?");
+    const prevTodos = await getTodos(app);
     const TEXT = "выучить fortran";
 
-    await user.type(input, `${TEXT}{enter}`);
-    const todos = await app.findAllByTestId(TEST_IDS.TODO_ITEM);
-    const lastTodoLabel = (
-      await app.findAllByTestId(TEST_IDS.TODO_ITEM_LABEL)
-    ).at(-1);
-    const lastTodoCheckbox = (
-      await app.findAllByTestId(TEST_IDS.TODO_ITEM_CHECKBOX)
-    ).at(-1) as HTMLInputElement;
+    await addTodo(app, TEXT);
+    const todos = await getTodos(app);
+    const lastTodoLabel = (await getTodoLabels(app)).at(-1);
+    const lastTodoCheckbox = (await getTodoCheckboxes(app)).at(-1);
 
     expect(todos.length).toBe(prevTodos.length + 1);
     expect(lastTodoLabel?.textContent).toBe(TEXT);
-    expect(lastTodoCheckbox.checked).toBe(false);
+    expect(lastTodoCheckbox?.checked).toBe(false);
   });
 
   it("marks a todo item as completed", async () => {
     const app = render(<App />);
-    const input = await app.findByPlaceholderText("What needs to be done?");
-    const TEXT = "выучить fortran";
 
-    await user.type(input, `${TEXT}{enter}`);
-    const lastTodoItem = (await app.findAllByTestId(TEST_IDS.TODO_ITEM)).at(
-      -1
-    )!;
-    await user.click(lastTodoItem);
-    const lastTodoCheckbox = (
-      await app.findAllByTestId(TEST_IDS.TODO_ITEM_CHECKBOX)
-    ).at(-1) as HTMLInputElement;
+    await addTodo(app);
+    const lastTodoItem = (await getTodos(app)).at(-1);
+    await user.click(lastTodoItem!);
+    const lastTodoCheckbox = (await getTodoCheckboxes(app)).at(-1);
 
-    expect(lastTodoCheckbox.checked).toBe(true);
+    expect(lastTodoCheckbox?.checked).toBe(true);
   });
 
   it("clears completed items", async () => {
     const app = render(<App />);
-    const input = await app.findByPlaceholderText("What needs to be done?");
-    const TEXT = "выучить fortran";
-    await user.type(input, `${TEXT}{enter}`);
-    await user.type(input, `${TEXT}{enter}`);
-    const lastTodoItem = (await app.findAllByTestId(TEST_IDS.TODO_ITEM)).at(
-      -1
-    )!;
-    await user.click(lastTodoItem);
-    const prevTotalCount = (await app.findAllByTestId(TEST_IDS.TODO_ITEM))
-      .length;
-    const prevCompleteCount = (
-      await app.findAllByTestId(TEST_IDS.TODO_ITEM_CHECKBOX)
-    ).filter((el) => (el as HTMLInputElement).checked).length;
+    await addTodo(app);
+    await addTodo(app);
+    const lastTodoItem = (await getTodos(app)).at(-1);
+    await user.click(lastTodoItem!);
+    const prevTotalCount = (await getTodos(app)).length;
+    const prevCompleteCount = (await getTodoCheckboxes(app)).filter(
+      (el) => el.checked
+    ).length;
 
     const clearButton = await app.findByText("Clear completed");
     await user.click(clearButton);
-    const totalCount = (await app.findAllByTestId(TEST_IDS.TODO_ITEM)).length;
-    const completedCount = (
-      await app.findAllByTestId(TEST_IDS.TODO_ITEM_CHECKBOX)
-    ).filter((el) => (el as HTMLInputElement).checked).length;
+    const totalCount = (await getTodos(app)).length;
+    const completedCount = (await getTodoCheckboxes(app)).filter(
+      (el) => el.checked
+    ).length;
 
     expect(totalCount).toBe(prevTotalCount - prevCompleteCount);
     expect(completedCount).toBe(0);

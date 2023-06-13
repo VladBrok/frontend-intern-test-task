@@ -2,8 +2,8 @@ import { useEffect, useRef } from "react";
 import { ITodo } from "../../shared-types";
 import TodoItem from "../TodoItem/TodoItem";
 import "./TodoList.css";
-import usePrevious from "../../hooks/usePrevious";
-import assert from "../../lib/assert";
+import { usePrevious } from "../../hooks/usePrevious";
+import { assert } from "../../lib/assert";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
 
 export interface ITodoListProps {
@@ -35,7 +35,7 @@ export default function TodoList({
 
     if (shouldScrollToBottom) {
       assert(containerRef.current, "containerRef is null.");
-      containerRef.current.scrollTo(0, containerRef.current.scrollHeight);
+      containerRef.current.scrollTop = containerRef.current.scrollHeight;
     }
   }, [activeFilter, prevFilter, prevLength, todos.length]);
 
@@ -44,7 +44,10 @@ export default function TodoList({
       className="todo-list overflow-x-hidden overflow-y-auto border-bottom"
       ref={containerRef}
     >
-      <div ref={innerContainerRef} className="todo-list__inner-container">
+      <div
+        ref={process.env.NODE_ENV === "test" ? undefined : innerContainerRef}
+        className="todo-list__inner-container"
+      >
         {todos.length !== 0 ? (
           todos.map((todo) => (
             <TodoItem key={todo.id} todo={todo} update={update} />

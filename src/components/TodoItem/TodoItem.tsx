@@ -26,15 +26,22 @@ export default function TodoItem({ todo, update }: ITodoItemProps) {
     <div
       className="todo-item__container py-3 ps-3"
       onClick={handleContainerClick}
+      data-testid="todo-item"
     >
       <FormCheck
-        checked={todo.isDone}
-        type="checkbox"
         id={todo.id}
-        label={todo.text}
-        onChange={() => update(todo.id)}
         className={`${todo.isDone ? "todo-item_done" : ""} ${ITEM_CLASS}`}
-      />
+      >
+        <FormCheck.Input
+          type="checkbox"
+          onChange={() => update(todo.id)}
+          checked={todo.isDone}
+          data-testid="todo-item-checkbox"
+        />
+        <FormCheck.Label data-testid="todo-item-label">
+          {todo.text}
+        </FormCheck.Label>
+      </FormCheck>
     </div>
   );
 }

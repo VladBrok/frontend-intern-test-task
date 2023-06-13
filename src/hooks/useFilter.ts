@@ -1,6 +1,6 @@
 import { useMemo } from "react";
 import { ITodo } from "../shared-types";
-import assert from "../lib/assert";
+import { assert } from "../lib/assert";
 
 export interface IFilter {
   name: string;
@@ -36,7 +36,7 @@ assert(
   "Filter names should be distinct."
 );
 
-export default function useFilter(todos: ITodo[], activeFilterName: string) {
+export function useFilter(todos: ITodo[], activeFilterName: string) {
   return useMemo(() => {
     const filter = FILTERS.find((x) => x.name === activeFilterName);
     assert(filter, `Active filter ${activeFilterName} not found.`);

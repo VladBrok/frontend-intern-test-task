@@ -3,11 +3,11 @@ import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import { useState } from "react";
 import { v4 as uuidv4 } from "uuid";
-import assert from "../../lib/assert";
+import { assert } from "../../lib/assert";
 import { ITodo } from "../../shared-types";
 import "./App.css";
 import TodoForm from "../TodoForm/TodoForm";
-import useFilter, { FILTERS } from "../../hooks/useFilter";
+import { FILTERS, useFilter } from "../../hooks/useFilter";
 import FilterTabs from "../FilterTabs/FilterTabs";
 import TodoList from "../TodoList/TodoList";
 

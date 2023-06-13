@@ -1,0 +1,17 @@
+.todo-item__container:hover {
+  cursor: pointer;
+  background-color: var(--bs-gray-200);
+}
+
+.todo-item_done > .form-check-label {
+  text-decoration: line-through;
+  color: var(--bs-secondary);
+}
+
+.todo-item:hover {
+  cursor: pointer;
+}
+
+.todo-item:hover > * {
+  cursor: pointer;
+}

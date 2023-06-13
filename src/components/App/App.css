@@ -1,0 +1,11 @@
+.app__todos-container {
+  max-width: 650px !important;
+}
+
+.app .btn-link {
+  text-decoration: none;
+}
+
+app__footer-item {
+  flex-basis: 33%;
+}

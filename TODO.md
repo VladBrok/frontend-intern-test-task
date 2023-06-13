@@ -1,0 +1,12 @@
+- [x] implement logic
+- [x] split the code into multiple files and components
+- [x] use BEM, isolate styles
+- [x] scroll to bottom after adding a new todo
+- [x] highlight hovered item
+- [x] handle case when 0 todos (or 0 completed, or 0 active)
+- [x] add font
+- [x] add favicon
+- [x] add animations
+- [x] make design responsive
+- [x] add tests
+- [x] publish on vercel

@@ -1,0 +1,15 @@
+.todo-form__input-field::-webkit-input-placeholder {
+  font-style: italic;
+}
+
+.todo-form__input-field:-moz-placeholder {
+  font-style: italic;
+}
+
+.todo-form__input-field::-moz-placeholder {
+  font-style: italic;
+}
+
+.todo-form__input-field:-ms-input-placeholder {
+  font-style: italic;
+}
